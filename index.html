@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <style>
+            .backimg{
+                background-image: url('teste.jpg');
+            }
+        </style>
+    </head>
+    <title>INAZUMA CALCULADORA</title>
+    <body style="text-align: center; font-family: serif;font-weight: bolder; color: rgb(245, 90, 0);" class="backimg">
+            
+            <h1 style="color:black ;">CALCULADORA DE TÉCNICA INAZUMA HUGO</h1>
+
+             <label for="atrib_tec">ATRIBUTO DA TÉCNICA(ex: Força, Destreza...)</label><br>
+             <input type="number" id="atrib_tec"><br><br>
+
+             <label for="poder_tec">PODER DA TÉCNICA(ex: Chute, Drible...)</label><br>
+             <input type="number" id="poder_tec"><br><br>
+
+             <label for="esp">VALOR DO ESPIRITO</label><br>
+             <input type="number" id="esp"><br><br>
+
+             <label for="sab">VALOR DA SABEDORIA</label><br>
+             <input type="number" id="sab"><br><br>
+
+             <label for="bonus_porc">BÔNUS NA PORCENTAGEM(ex: 2)</label><br>
+             <input type="number" id="bonus_porc"><br><br>
+
+             <label for="bonus_poder">BÔNUS NO PODER(ex: 200)</label><br>
+             <input type="number" id="bonus_poder"><br><br>
+
+             <label for="vant_element" style="color: green;">VANTAGEM ELEMENTAL DO JOGADOR   </label>
+             <input type="checkbox" id="vant_element" value="on">
+             <label for="vant_element_tec" style="color: green;">VANTAGEM ELEMENTAL DA TÉCNICA   </label>
+             <input type="checkbox" id="vant_element_tec"  value="on"><br><br>
+             <label for="desvant_element" style="color: red;">DESVANTAGEM ELEMENTAL DO JOGADOR   </label>
+             <input type="checkbox" id="desvant_element" value="on">
+             <label for="desvant_element_tec" style="color: red;">DESVANTAGEM ELEMENTAL DA TÉCNICA   </label>
+             <input type="checkbox" id="desvant_element_tec" value="on"><br><br>
+
+                <button onclick="calc_tec()" style="background-color: orange; width: 20%; height: 25%; font-size: large;">CALCULAR</button><br><br>
+
+                <div id="result_dice"> </div><br><br>
+                <div id="result"> </div>
+            </div>
+            <script>
+                var bnsvtg = 0;
+
+                function calc_tec() {
+
+                    //DEFININDO AS VARIAVEIS
+                    let atec = parseInt(document.getElementById('atrib_tec').value);
+                    let ptec = parseInt(document.getElementById('poder_tec').value);
+                    let esptec = parseInt(document.getElementById('esp').value);
+                    let sabtec = parseInt(document.getElementById('sab').value);
+                    let bnsporc = parseInt(document.getElementById('bonus_porc').value);
+                    let bnspoder = parseInt(document.getElementById('bonus_poder').value);
+                    let vtg_element = document.getElementById('vant_element').checked;
+                    let vtg_element_tec = document.getElementById('vant_element_tec').checked;
+                    let dsvtg_element = document.getElementById('desvant_element').checked;
+                    let dsvtg_element_tec = document.getElementById('desvant_element_tec').checked;
+                    
+                    //CHECA SE HÁ VANTAGEM E INCREMENTA A VARIAVEL DE ACORDO COM O QUE FOI MARCADO
+                        if(vtg_element && vtg_element_tec){
+                            bnsvtg += 10;
+                        }
+                        else if(vtg_element || vtg_element_tec){
+                            bnsvtg += 5;
+                        }
+
+                    //CHECA SE HÁ DESVANTAGEM E INCREMENTA A VARIAVEL DE ACORDO COM O QUE FOI MARCADO    
+                        if(dsvtg_element && dsvtg_element_tec){
+                            bnsvtg -= 10;
+                        }
+                        else if(dsvtg_element || dsvtg_element_tec){
+                            bnsvtg -= 5;
+                        }
+                        console.log(bnsvtg);
+
+                    //ROLA O DADO DE 10 LADOS
+                    let d10 =  Math.floor(Math.random()*10 + 1);
+                    document.getElementById('result_dice').innerHTML= ("Resultado do Dado = "+d10);
+                    
+                    //CALCULA PORCENTAGEM E O RESULTADO
+                    let porcentagem_result = (d10*10 + atec +sabtec+bnsporc+bnsvtg)/100;
+                    let resultado = porcentagem_result*(ptec + esptec + bnspoder);
+                    document.getElementById('result').innerHTML= ("Resultado do Teste = "+resultado);
+                    
+                    //ZERA A VARIAVEL DE VANTAGEM 
+                    bnsvtg = 0;                   
+                }
+            </script>
+
+    </body>
+</html>
