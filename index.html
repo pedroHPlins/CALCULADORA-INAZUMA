@@ -9,36 +9,36 @@
         </style>
     </head>
     <title>INAZUMA CALCULADORA</title>
-    <body style="text-align: center; font-family: serif;font-weight: bolder; color black;" class="backimg">
+    <body style="text-align: center; font-family: serif;font-weight: bolder; color: rgb(0, 0, 0);" class="backimg">
             
             <h1 style="color:black ;">CALCULADORA DE TÉCNICA INAZUMA HUGO</h1>
 
              <label for="atrib_tec">ATRIBUTO DA TÉCNICA(ex: Força, Destreza...)</label><br>
-             <input type="number" id="atrib_tec"><br><br>
+             <input type="number" id="atrib_tec" value=0><br><br>
 
              <label for="poder_tec">PODER DA TÉCNICA(ex: Chute, Drible...)</label><br>
-             <input type="number" id="poder_tec"><br><br>
+             <input type="number" id="poder_tec" value=0><br><br>
 
              <label for="esp">VALOR DO ESPIRITO</label><br>
-             <input type="number" id="esp"><br><br>
+             <input type="number" id="esp" value=0><br><br>
 
              <label for="sab">VALOR DA SABEDORIA</label><br>
-             <input type="number" id="sab"><br><br>
+             <input type="number" id="sab" value=0><br><br>
 
              <label for="bonus_porc">BÔNUS NA PORCENTAGEM(ex: 2)</label><br>
-             <input type="number" id="bonus_porc"><br><br>
+             <input type="number" id="bonus_porc" value=0><br><br>
 
              <label for="bonus_poder">BÔNUS NO PODER(ex: 200)</label><br>
-             <input type="number" id="bonus_poder"><br><br>
+             <input type="number" id="bonus_poder" value=0><br><br>
 
              <label for="vant_element" style="color: green;">VANTAGEM ELEMENTAL DO JOGADOR   </label>
-             <input type="checkbox" id="vant_element" value="on">
+             <input type="checkbox" id="vant_element">
              <label for="vant_element_tec" style="color: green;">VANTAGEM ELEMENTAL DA TÉCNICA   </label>
-             <input type="checkbox" id="vant_element_tec"  value="on"><br><br>
+             <input type="checkbox" id="vant_element_tec"><br><br>
              <label for="desvant_element" style="color: red;">DESVANTAGEM ELEMENTAL DO JOGADOR   </label>
-             <input type="checkbox" id="desvant_element" value="on">
+             <input type="checkbox" id="desvant_element">
              <label for="desvant_element_tec" style="color: red;">DESVANTAGEM ELEMENTAL DA TÉCNICA   </label>
-             <input type="checkbox" id="desvant_element_tec" value="on"><br><br>
+             <input type="checkbox" id="desvant_element_tec"><br><br>
 
                 <button onclick="calc_tec()" style="background-color: orange; width: 20%; height: 25%; font-size: large;">CALCULAR</button><br><br>
                 <div style="background-color: orange; width: 10%; margin: auto; color: black;">
@@ -85,8 +85,8 @@
                     
                     //CALCULA PORCENTAGEM E O RESULTADO
                     let porcentagem_result = (d10*10 + atec +sabtec+bnsporc+bnsvtg)/100;
-                    let resultado = porcentagem_result*(ptec + esptec + bnspoder);
-                    document.getElementById('result').innerHTML= ("Resultado do Teste = "+resultado);
+                    let resultado = Math.ceil(porcentagem_result*(ptec + esptec + bnspoder));
+                    document.getElementById('result').innerHTML= ("Resultado do Teste = "+ resultado);
                     
                     //ZERA A VARIAVEL DE VANTAGEM 
                     bnsvtg = 0;                   
